@@ -1,4 +1,4 @@
-<em>This project has been created as part of the 42 curriculum by ankozako.<em>
+<em>This project has been created as part of the 42 curriculum by ankozako.</em>
 
 # Description
 The goal of inception is to create an infrastructure using Docker, which launches several services (a=MariaDB, Wordpress, NGINX) that communicate with each other in a secure manner. Through the project we learn about containerization, services coordination with Docker Compose, volume management and system configuration.
