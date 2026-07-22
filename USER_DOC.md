@@ -37,4 +37,13 @@ Your browser will show a self-signed certificate warning - this is expected, acc
 
 ## Locating and managing credentials
 - Non-secret configuration is in srcs/.env
-- 
+- Credentials are in individual files in secrets/, never committe to Git:
+secrets/db_password.txt - MariaDB app user password
+secrets/db_root_password.txt - MariaDB root password
+secrets/credentials.txt - WordPress admin/user passwords
+- To change a password: edit the relevant file in secrets/, then 'make re' to rebuild with the new value (this only affects fresh initialisation, see DEV_DOC.md for changing existing passwords)
+
+
+## Checking that services run correctly
+docker compose -f srcs/docker-compose.yml ps
+- should show all three services as "up" 
