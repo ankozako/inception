@@ -47,3 +47,6 @@ secrets/credentials.txt - WordPress admin/user passwords
 ## Checking that services run correctly
 docker compose -f srcs/docker-compose.yml ps
 - should show all three services as "up" 
+
+docker compose -f srcs/docker-compose.yml logs<service>
+- to view logs for a specific service if something looks wrong
