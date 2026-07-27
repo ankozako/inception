@@ -29,6 +29,21 @@ services:
       - mariadb
     restart: on-failure
 
+  nginx:
+    build: ./requirements/nginx
+    image: nginx
+    container_name: nginx
+    env_file: ./.env
+    networks:
+      - inception_network
+    volumes:
+      - wordpress_data:/var/www/html
+    depends_on:
+      - wordpress
+    ports: 
+      - "443:443"
+    restart: on-failure
+
 secrets:
   db_password:
     file: ../secrets/db_password.txt
@@ -53,3 +68,4 @@ volumes:
       type: none
       o: bind
       device: /home/ankozako/data/wordpress
+  
