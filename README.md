@@ -11,33 +11,48 @@ The goal of inception is to create an infrastructure using Docker, which launche
 A virtual machine (VM) is like a virtual computer inside a physical computer. It can have a different operating system (OS) from the physical host computer. It is convenient when one needs a testing environment (for example to test a new OS), or just needs to work on two different OS, it is possible with using just one physical machine. The VM environment is also isolated, so if the VM crashes, the host computer remains unaffected.   
 
 ### Docker
-The Docker is a template contatining instructions for creating a container, packaging software in it. A container is a data structure holding objects, storing them according to specific rules.  
+The Docker is a system for packaging software into images - templates containing everything an application needs to run (code, dependencies etc). A container is a running instance of an image, an isolated process on the host machine that has it''s own system and interface. It is lighter and faster than a VM but less isolated, since the host kernel is still shared. 
 
 ## Secrets vs Environment Variables
 ### Secrets
-Secrets comprise all the sensitive data that is not meant to be shared - passwords, certificates, token identification, etc. They are stoked in a hidden file.
+Secrets comprise all the sensitive data that is not meant to be shared - passwords, certificates, token identification, etc. They are stored in a hidden file and never get exposed as plain environment variables.
 
 ### Environment Variables
-Enviroment variables help create a reusable configuratio, making the container easier to manage and deploy across environments.
+Enviroment variables help create a reusable configuratio, making the container easier to manage and deploy across environments. They are the right choice for non-sensitive data: database, domain and user names, where visibility doesn't pose any security concerns. 
 
 ## Docker Network vs Host Network
 ### Docker Network
-Docker Network enables the Docker to communicate between containers and the host machine or external network. In the network, 
+Docker Network enables the Docker to communicate between containers and the host machine or external network. In the network, each container is reachable by others using its service name as a hostname. This project uses one to connect all three services while keeping them isolated from the host network.
 
 ### Host Network
-Host Network is the network of the host machine the VM is running on.
+Host Network removes the isolation alltogether. A container using the host networkk shares the host's machine network directly.
 
 ## Docker Volumes vs Bind Mounts
 
 ### Docker Volumes
-
+Docker volumes are storage locations fully managed by Docker itself, existing as first class objects that can be listed and inspected independently of specific containers. Since Docker manages them, they can easly be backed up, migrated and shared across containers. 
 ### Bind Mounts
 Bind Mounts can be used to mount source code into the container, which will see the changes as soon as the file is saved. It means that processes can be run in the container, watching for changes in the file system, preventing data loss. If a docker container were to shut down, the bind mounted data should not be lost. 
 
-To compare, Docker Volumes aare easier to back up or migrate than bind mounts. Bind mounts create persisntent volumes on the host machine while docker volumes do it on the docker host. 
+To compare, Docker Volumes are easier to back up or migrate than bind mounts. Bind mounts create persisntent volumes on the host machine while docker volumes do it on the docker host. 
 
 # Instructions
+1. Clone the repository into a Debian VM with Docker and Docker Compose installed.
+2. Creeate srcs/.env with the required variables - domain name, database name, WordPress titles/usernames/emails.
+3. Create the required files inside secrets/: db_password.txt, db_root_password.txt, credentials.txt
+4. Add a host entry so the domain resolves locally: echo "127.0.0.1 ankozako.42.fr" | sudo tee -a /etc/hosts
+5. From the root of the project run: make
+6. Visit https://ankozako.42.fr in a browser
+
+See USER_DOC.md and DEV_DOC.md for more details.
 
 # Resources
+https://docs.docker.com/reference/dockerfile/
 https://www.docker.com/get-started/
+https://docs.docker.com/compose/
 MardDown syntax: https://www.markdownguide.org/basic-syntax/
+
+# AI usage
+AI was used for:
+- understanding new concepts
+- finding the right diagnostic commands for debugging and understanding the underlying issues
