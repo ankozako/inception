@@ -11,9 +11,12 @@ A Debian VM (this project was developed on Debian 13 "Trixie" s the VM OS, with 
 4. Add a host entry so the domain resolves locally: echo "127.0.0.1 yourlogin.42.fr" | sudo tee-a/etc/hosts
 
 ## Building and launching the project using the Makefile and Docker Compose
-- make - sets up hosts entry and builds and starts everything
-- make build - builds images only
-- make down - stops and removes containers, keeps volumes
+make 
+- sets up hosts entry and builds and starts everything
+make build
+- builds images only
+make down
+- stops and removes containers, keeps volumes
 - make stop/start - stop or start without removing containers
 - make restart - down, then up
 - make re - full rebuild from clean state
