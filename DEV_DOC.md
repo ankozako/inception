@@ -18,6 +18,7 @@ A Debian VM (this project was developed on Debian 13 "Trixie" s the VM OS, with 
 - make restart - down, then up
 - make re - full rebuild from clean state
 - make fclean - removes containers, images, volumes and host data
+- docker compose up -d --build <service> - small config change, keep existing data
 
 ## Relevant commands to manage containers and volumes
 docker compose -f srcs/docker-compose.yml ps
