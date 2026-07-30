@@ -47,10 +47,10 @@ To compare, Docker Volumes are easier to back up or migrate than bind mounts. Bi
 See USER_DOC.md and DEV_DOC.md for more details.
 
 # Resources
-Docker official documentation: https://docs.docker.com/reference/dockerfile/
-Docker compose documentation: https://docs.docker.com/compose/
-MariaDB documentation: https://hub.docker.com/_/mariadb
-NGINX documentation on configuring HTTPS servers: https://nginx.org/en/docs/
+Docker official documentation: https://docs.docker.com/reference/dockerfile/ <br>
+Docker compose documentation: https://docs.docker.com/compose/ <br>
+MariaDB documentation: https://hub.docker.com/_/mariadb <br>
+NGINX documentation on configuring HTTPS servers: https://nginx.org/en/docs/ <br>
 MarkDown syntax: https://www.markdownguide.org/basic-syntax/
 
 # AI usage
