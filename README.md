@@ -18,27 +18,27 @@ The Docker is a system for packaging software into images - templates containing
 Secrets comprise all the sensitive data that is not meant to be shared - passwords, certificates, token identification, etc. They are stored in a hidden file and never get exposed as plain environment variables.
 
 ### Environment Variables
-Enviroment variables help create a reusable configuratio, making the container easier to manage and deploy across environments. They are the right choice for non-sensitive data: database, domain and user names, where visibility doesn't pose any security concerns. 
+Environment variables help create a reusable configuration, making the container easier to manage and deploy across environments. They are the right choice for non-sensitive data: database, domain and user names, where visibility doesn't pose any security concerns. 
 
 ## Docker Network vs Host Network
 ### Docker Network
 Docker Network enables the Docker to communicate between containers and the host machine or external network. In the network, each container is reachable by others using its service name as a hostname. This project uses one to connect all three services while keeping them isolated from the host network.
 
 ### Host Network
-Host Network removes the isolation alltogether. A container using the host networkk shares the host's machine network directly.
+Host Network removes the isolation altogether. A container using the host network shares the host's machine network directly.
 
 ## Docker Volumes vs Bind Mounts
 
 ### Docker Volumes
-Docker volumes are storage locations fully managed by Docker itself, existing as first class objects that can be listed and inspected independently of specific containers. Since Docker manages them, they can easly be backed up, migrated and shared across containers. 
+Docker volumes are storage locations fully managed by Docker itself, existing as first class objects that can be listed and inspected independently of specific containers. Since Docker manages them, they can easily be backed up, migrated and shared across containers. 
 ### Bind Mounts
 Bind Mounts can be used to mount source code into the container, which will see the changes as soon as the file is saved. It means that processes can be run in the container, watching for changes in the file system, preventing data loss. If a docker container were to shut down, the bind mounted data should not be lost. 
 
-To compare, Docker Volumes are easier to back up or migrate than bind mounts. Bind mounts create persisntent volumes on the host machine while docker volumes do it on the docker host. 
+To compare, Docker Volumes are easier to back up or migrate than bind mounts. Bind mounts create persistent volumes on the host machine while docker volumes do it on the docker host. 
 
 # Instructions
 1. Clone the repository into a Debian VM with Docker and Docker Compose installed.
-2. Creeate srcs/.env with the required variables - domain name, database name, WordPress titles/usernames/emails.
+2. Create srcs/.env with the required variables - domain name, database name, WordPress titles/usernames/emails.
 3. Create the required files inside secrets/: db_password.txt, db_root_password.txt, credentials.txt
 4. Add a host entry so the domain resolves locally: echo "127.0.0.1 ankozako.42.fr" | sudo tee -a /etc/hosts
 5. From the root of the project run: make
@@ -47,12 +47,13 @@ To compare, Docker Volumes are easier to back up or migrate than bind mounts. Bi
 See USER_DOC.md and DEV_DOC.md for more details.
 
 # Resources
-https://docs.docker.com/reference/dockerfile/
-https://www.docker.com/get-started/
-https://docs.docker.com/compose/
-MardDown syntax: https://www.markdownguide.org/basic-syntax/
+Docker official documentation: https://docs.docker.com/reference/dockerfile/
+Docker compose documentation: https://docs.docker.com/compose/
+MariaDB documentation: https://hub.docker.com/_/mariadb
+NGINX documentation on configuring HTTPS servers: https://nginx.org/en/docs/
+MarkDown syntax: https://www.markdownguide.org/basic-syntax/
 
 # AI usage
 AI was used for:
-- understanding new concepts
+- help with understanding new concepts
 - finding the right diagnostic commands for debugging and understanding the underlying issues
