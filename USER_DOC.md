@@ -3,7 +3,7 @@ This document explains how to use the Inception stack as an end user or administ
 
 ## This stack provides the following services:
 -**NGINX** - the entrypoint serving the site over HTTPS (port 443)
--**WordPress** - the websit itself
+-**WordPress** - the website itself
 -**MariaDB** - stores WordPress data (posts, users, settings)
 
 
@@ -37,11 +37,11 @@ Your browser will show a self-signed certificate warning - this is expected, acc
 
 ## Locating and managing credentials
 - Non-secret configuration is in srcs/.env
-- Credentials are in individual files in secrets/, never committe to Git:
+- Credentials are in individual files in secrets/, never committed to Git:
 secrets/db_password.txt - MariaDB app user password
 secrets/db_root_password.txt - MariaDB root password
 secrets/credentials.txt - WordPress admin/user passwords
-- To change a password: edit the relevant file in secrets/, then 'make re' to rebuild with the new value (this only affects fresh initialisation, see DEV_DOC.md for changing existing passwords)
+- To change a password: edit the relevant file in secrets/, then 'make re' to rebuild with the new value (this only affects fresh initialization, see DEV_DOC.md for changing existing passwords)
 
 
 ## Checking that services run correctly
