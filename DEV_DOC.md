@@ -2,13 +2,13 @@
 This document explains how to set up, build and work on Inception from a developer's point of view. 
 
 ## Prerequisites
-A Debian VM (this project was developed on Debian 13 "Trixie" s the VM OS, with containers built from Debian:bookworm), Docker Engine and Docker Compose installed.
+A Debian VM (this project was developed on Debian 13 "Trixie" as the VM OS, with containers built from Debian:bookworm), Docker Engine and Docker Compose installed.
 
 ## Setting up the environment
 1. clone the repository: git clone <repo-url> inception
 2. Create srcs/.env from the template: cp srcs/.env.example srcs/.env and fill in DOMAIN_NAME (yourlogin.42.fr) and other non-secret values
-3. Create the secrets/ files (not committed to Git - see .gitignore): secrets/db_password.txt secrets/db_root_password.txt secrets/credentials.txt Each shoould contain a single password (or KEY=value pairs for credentials.txt - see file for expected format)
-4. Add a host entry so the domain resolves locally: echo "127.0.0.1 yourlogin.42.fr" | sudo tee-a/etc/hosts
+3. Create the secrets/ files (not committed to Git - see .gitignore): secrets/db_password.txt secrets/db_root_password.txt secrets/credentials.txt Each should contain a single password (or KEY=value pairs for credentials.txt - see file for expected format)
+4. Add a host entry so the domain resolves locally: echo "127.0.0.1 yourlogin.42.fr" | sudo tee -a /etc/hosts
 
 ## Building and launching the project using the Makefile and Docker Compose
 - make - sets up hosts entry and builds and starts everything
@@ -42,5 +42,5 @@ docker network ls
 ## Where the project data is stored and how it persists
 MariaDB data: named volume 'mariadb_data', backed by host path /home/<login>/data/mariadb
 WordPress data: named volume 'wordpress_data', backed by host path /home/<login>/data/wordpress
-- data survives 'docker compose down' and continer restarts sincce it lives in the volume, and not in the container's writable layer
+- data survives 'docker compose down' and container restarts since it lives in the volume, and not in the container's writable layer
 - data is removed by make fclean (or manual 'docker volume rm')
